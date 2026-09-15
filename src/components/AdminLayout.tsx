@@ -38,7 +38,14 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   const handleLogout = () => {
     DataStore.setSessionUser(null);
-    router.push('/admin/login');
+    DataStore.setSessionSeller(null);
+    DataStore.setSessionStaff(null);
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('daebaktix_session_user_v1');
+      localStorage.removeItem('daebaktix_session_seller_v1');
+      localStorage.removeItem('daebaktix_session_staff_v1');
+    }
+    window.location.href = '/';
   };
 
   if (pathname === '/admin/login') {

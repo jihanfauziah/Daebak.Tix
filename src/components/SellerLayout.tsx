@@ -38,8 +38,15 @@ export default function SellerLayout({ children }: { children: React.ReactNode }
   }, [pathname, router]);
 
   const handleLogout = () => {
+    DataStore.setSessionUser(null);
     DataStore.setSessionSeller(null);
-    router.push('/seller/login');
+    DataStore.setSessionStaff(null);
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('daebaktix_session_user_v1');
+      localStorage.removeItem('daebaktix_session_seller_v1');
+      localStorage.removeItem('daebaktix_session_staff_v1');
+    }
+    window.location.href = '/';
   };
 
   if (pathname === '/seller/login' || pathname === '/seller/packages') {

@@ -91,8 +91,15 @@ export default function StaffDashboardPage() {
   };
 
   const handleLogout = () => {
+    DataStore.setSessionUser(null);
+    DataStore.setSessionSeller(null);
     DataStore.setSessionStaff(null);
-    router.push('/staff/login');
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('daebaktix_session_user_v1');
+      localStorage.removeItem('daebaktix_session_seller_v1');
+      localStorage.removeItem('daebaktix_session_staff_v1');
+    }
+    window.location.href = '/';
   };
 
   // Sample seller tickets for one-click quick test
