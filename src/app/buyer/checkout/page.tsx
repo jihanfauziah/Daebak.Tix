@@ -17,7 +17,7 @@ import {
   Copy,
 } from 'lucide-react';
 
-export default function CheckoutPage() {
+function CheckoutContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -342,5 +342,21 @@ export default function CheckoutPage() {
         }
       `}</style>
     </BuyerLayout>
+  );
+}
+
+export default function CheckoutPage() {
+  return (
+    <React.Suspense
+      fallback={
+        <BuyerLayout>
+          <div className="container text-center py-5">
+            <h2 className="font-display">Loading Payment Gateway...</h2>
+          </div>
+        </BuyerLayout>
+      }
+    >
+      <CheckoutContent />
+    </React.Suspense>
   );
 }
