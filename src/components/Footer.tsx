@@ -74,7 +74,7 @@ export default function Footer() {
             <strong>Disclaimer:</strong> Daebak.Tix adalah platform marketplace perantara tiket resmi. Kami bekerjasama langsung dengan promotor resmi terverifikasi admin untuk menjamin keaslian 100% tiket bertanda QR unik.
           </p>
           <div className="copy-text">
-            © 2026 <strong>Daebak.Tix Indonesia</strong>. Dibuat dengan <Heart size={14} color="#FFD56B" fill="#FFD56B" inline /> untuk Hallyu Fans Indonesia.
+            © 2026 <strong>Daebak.Tix Indonesia</strong>. Dibuat dengan <Heart size={14} color="#FFD56B" fill="#FFD56B" /> untuk Hallyu Fans Indonesia.
           </div>
         </div>
       </div>

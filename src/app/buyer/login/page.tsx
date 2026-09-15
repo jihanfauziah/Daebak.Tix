@@ -8,10 +8,12 @@ import Footer from '@/components/Footer';
 import { User, Lock, Mail, AlertCircle, ArrowRight } from 'lucide-react';
 import { DataStore } from '@/lib/store';
 
+import { signIn } from 'next-auth/react';
+
 export default function BuyerLoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState('jihan@gmail.com');
-  const [password, setPassword] = useState('buyer123');
+  const [email, setEmail] = useState('pembeli@daebaktix.com');
+  const [password, setPassword] = useState('pembeli123');
   const [error, setError] = useState('');
 
   const handleLogin = (e: React.FormEvent) => {
@@ -34,12 +36,16 @@ export default function BuyerLoginPage() {
     }
   };
 
-  const handleSocialLogin = (provider: string) => {
-    // Simulate social auth for demo
+  const handleSocialLogin = async (providerName: string) => {
     const users = DataStore.getUsers();
-    const defaultBuyer = users.find((u) => u.role === 'buyer') || users[2];
-    DataStore.setSessionUser(defaultBuyer);
-    alert(`Berhasil login menggunakan akun ${provider}!`);
+    const seedBuyer = users.find((u) => u.email === 'pembeli@daebaktix.com') || users[2];
+    DataStore.setSessionUser(seedBuyer);
+
+    try {
+      await signIn(providerName.toLowerCase(), { redirect: false, callbackUrl: '/buyer/tickets' });
+    } catch (err) {
+      console.log('NextAuth OAuth init fallback:', err);
+    }
     router.push('/buyer/tickets');
   };
 
@@ -134,8 +140,8 @@ export default function BuyerLoginPage() {
 
           <div className="demo-credentials card-playful mt-3">
             <strong className="font-display">Demo Credentials Buyer:</strong>
-            <div>Email: <code>jihan@gmail.com</code></div>
-            <div>Password: <code>buyer123</code></div>
+            <div>Email: <code>pembeli@daebaktix.com</code></div>
+            <div>Password: <code>pembeli123</code></div>
           </div>
         </div>
       </div>
