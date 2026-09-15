@@ -38,7 +38,7 @@ const TikTokProvider = {
   clientSecret: process.env.TIKTOK_CLIENT_SECRET,
 };
 
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || 'demo-google-client-id',
