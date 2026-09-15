@@ -57,11 +57,10 @@ export default function BuyerLoyaltyPage() {
 
         {redeemMsg && (
           <div className="alert-success card-playful mb-4 text-center">
-            <Check size={20} color="#2E7D32" inline /> {redeemMsg}
+            <Check size={20} color="#2E7D32" /> {redeemMsg}
           </div>
         )}
 
-        {/* Loyalty Balance Card */}
         <div className="loyalty-card card-playful text-center mb-4">
           <span className="sticker-badge badge-lavender mb-2">{tierBadge}</span>
           <span className="balance-label font-display">TOTAL POINT SAYA:</span>
