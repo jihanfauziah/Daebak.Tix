@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { DataStore } from '@/lib/store';
@@ -52,50 +53,65 @@ export default function LandingPage() {
     <div className="landing-wrapper">
       <Navbar />
 
-      {/* 1. HERO SECTION */}
+      {/* 1. HERO SECTION — 2-column layout with illustration */}
       <section className="hero-section">
         <div className="container hero-container">
-          <div className="hero-badge-row">
-            <span className="sticker-badge badge-mustard">
-              <Sparkles size={14} /> MARKETPLACE TIKET EVENT KOREA #1 INDONESIA
-            </span>
-            <span className="sticker-badge badge-pink">
-              <Flame size={14} /> K-POP & FANMEET AKTOR
-            </span>
+          <div className="hero-text-col">
+            <div className="hero-badge-row">
+              <span className="hero-pill hero-pill-mustard">
+                <Sparkles size={14} /> MARKETPLACE TIKET EVENT KOREA #1 INDONESIA
+              </span>
+              <span className="hero-pill hero-pill-outline">
+                <Flame size={14} /> K-POP & FANMEET AKTOR
+              </span>
+            </div>
+
+            <h1 className="hero-title">
+              Nonton Konser Idol & <br />
+              <span className="title-highlight">Fanmeeting Aktor Korea</span> <br />
+              Tanpa Khawatir Tiket Palsu!
+            </h1>
+
+            <p className="hero-subtitle">
+              Platform ticketing khusus event Korea terpercaya di Indonesia. Dilengkapi sistem QR Code anti-duplikat, verifikasi admin 100% aman, dan scanner staf venue real-time.
+            </p>
+
+            <div className="hero-cta-group">
+              <a href="#kategori-event" className="btn btn-lg btn-primary hero-btn">
+                <Ticket size={20} /> Cari Tiket Event Now
+              </a>
+              <a href="#section-penjual" className="btn btn-lg hero-btn hero-btn-outline">
+                <Store size={20} /> Jual Tiket Event Kamu
+              </a>
+            </div>
+
+            {/* Trust Badges */}
+            <div className="hero-feature-row">
+              <div className="feature-chip">
+                <ShieldCheck size={18} color="var(--color-maroon)" />
+                <span>100% Terverifikasi Admin</span>
+              </div>
+              <div className="feature-chip">
+                <QrCode size={18} color="var(--color-maroon)" />
+                <span>QR Code Anti-Duplikat</span>
+              </div>
+              <div className="feature-chip">
+                <CreditCard size={18} color="var(--color-maroon)" />
+                <span>Pembayaran Lengkap</span>
+              </div>
+            </div>
           </div>
 
-          <h1 className="hero-title">
-            Nonton Konser Idol & <br />
-            <span className="title-highlight">Fanmeeting Aktor Korea</span> <br />
-            Tanpa Khawatir Tiket Palsu!
-          </h1>
-
-          <p className="hero-subtitle">
-            Platform ticketing khusus event Korea terpercaya di Indonesia. Dilengkapi sistem QR Code anti-duplikat, verifikasi admin 100% aman, dan scanner staf venue real-time.
-          </p>
-
-          <div className="hero-cta-group">
-            <a href="#kategori-event" className="btn btn-lg btn-primary">
-              <Ticket size={20} /> Cari Tiket Event Now
-            </a>
-            <a href="#section-penjual" className="btn btn-lg btn-secondary">
-              <Store size={20} /> Jual Tiket Event Kamu
-            </a>
-          </div>
-
-          {/* Hero Feature Highlights */}
-          <div className="hero-feature-row">
-            <div className="feature-chip">
-              <ShieldCheck size={18} color="var(--color-maroon)" />
-              <span>100% Terverifikasi Admin</span>
-            </div>
-            <div className="feature-chip">
-              <QrCode size={18} color="var(--color-maroon)" />
-              <span>QR Code Anti-Duplikat</span>
-            </div>
-            <div className="feature-chip">
-              <CreditCard size={18} color="var(--color-maroon)" />
-              <span>Pembayaran Lengkap (QRIS/Bank)</span>
+          <div className="hero-image-col">
+            <div className="hero-image-wrapper">
+              <img
+                src="/images/hero-concert.jpg"
+                alt="Ilustrasi konser K-Pop dengan fans Indonesia memegang lightstick"
+                className="hero-illustration"
+              />
+              <div className="hero-image-badge font-display">
+                <Ticket size={16} /> 10,000+ Tiket Terjual
+              </div>
             </div>
           </div>
         </div>
@@ -456,55 +472,108 @@ export default function LandingPage() {
       <Footer />
 
       <style jsx>{`
-        /* Hero Styling */
+        /* Hero Styling — 2-column layout */
         .hero-section {
-          background-color: var(--color-pink-soft);
-          padding: 80px 0 60px;
-          border-bottom: 3px solid var(--color-border);
-          text-align: center;
+          background-color: #FAF6F0;
+          background-image:
+            linear-gradient(rgba(122, 28, 44, 0.04) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(122, 28, 44, 0.04) 1px, transparent 1px);
+          background-size: 48px 48px;
+          padding: 60px 0 50px;
+          border-bottom: 2px solid var(--color-border);
           position: relative;
+          overflow: hidden;
+        }
+        .hero-container {
+          display: grid;
+          grid-template-columns: 1.1fr 1fr;
+          gap: 48px;
+          align-items: center;
+        }
+        .hero-text-col {
+          display: flex;
+          flex-direction: column;
         }
         .hero-badge-row {
           display: flex;
           align-items: center;
-          justify-content: center;
-          gap: 12px;
+          gap: 10px;
           margin-bottom: 24px;
+          flex-wrap: wrap;
+        }
+        .hero-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          padding: 7px 16px;
+          font-family: var(--font-display);
+          font-size: 0.78rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          border-radius: var(--radius-pill);
+          letter-spacing: 0.2px;
+        }
+        .hero-pill-mustard {
+          background-color: var(--color-mustard);
+          color: var(--color-maroon-dark);
+          border: 2px solid var(--color-maroon-dark);
+          box-shadow: 2px 2px 0px var(--color-maroon-dark);
+        }
+        .hero-pill-outline {
+          background-color: var(--color-white);
+          color: var(--color-maroon-dark);
+          border: 2px solid var(--color-maroon);
+          box-shadow: 2px 2px 0px var(--color-maroon);
         }
         .hero-title {
           font-family: var(--font-display);
-          font-size: 3.2rem;
-          line-height: 1.15;
+          font-size: 3rem;
+          line-height: 1.25;
           color: var(--color-maroon-dark);
           margin-bottom: 20px;
         }
         .title-highlight {
           color: var(--color-maroon);
           background-color: var(--color-mustard);
-          padding: 2px 14px;
+          padding: 4px 16px;
           border-radius: var(--radius-sm);
           display: inline-block;
           transform: rotate(-1deg);
+          margin: 4px 0;
         }
         .hero-subtitle {
-          font-size: 1.15rem;
+          font-size: 1.08rem;
           color: var(--color-text-muted);
-          max-width: 760px;
-          margin: 0 auto 32px;
-          line-height: 1.6;
+          max-width: 560px;
+          margin-bottom: 32px;
+          line-height: 1.7;
         }
         .hero-cta-group {
           display: flex;
           align-items: center;
-          justify-content: center;
           gap: 16px;
-          margin-bottom: 40px;
+          margin-bottom: 36px;
+          flex-wrap: wrap;
+        }
+        .hero-btn {
+          padding: 14px 28px;
+          font-size: 1.05rem;
+        }
+        .hero-btn-outline {
+          background-color: var(--color-cream-light);
+          color: var(--color-maroon-dark);
+          border: 2px solid var(--color-maroon);
+          box-shadow: 3px 3px 0px var(--color-maroon);
+        }
+        .hero-btn-outline:hover {
+          background-color: var(--color-pink-soft);
+          transform: translateY(-2px);
+          box-shadow: 5px 5px 0px var(--color-maroon);
         }
         .hero-feature-row {
           display: flex;
           align-items: center;
-          justify-content: center;
-          gap: 24px;
+          gap: 16px;
           flex-wrap: wrap;
         }
         .feature-chip {
@@ -516,8 +585,46 @@ export default function LandingPage() {
           border-radius: var(--radius-pill);
           border: 2px solid var(--color-maroon);
           font-weight: 600;
-          font-size: 0.9rem;
+          font-size: 0.85rem;
           box-shadow: 2px 2px 0px var(--color-maroon);
+        }
+
+        /* Hero Image Column */
+        .hero-image-col {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .hero-image-wrapper {
+          position: relative;
+          width: 100%;
+          max-width: 520px;
+        }
+        .hero-illustration {
+          width: 100%;
+          height: auto;
+          border-radius: var(--radius-lg);
+          border: 3px solid var(--color-maroon);
+          box-shadow: 8px 8px 0px var(--color-maroon-dark);
+          object-fit: cover;
+        }
+        .hero-image-badge {
+          position: absolute;
+          bottom: -14px;
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: var(--color-mustard);
+          color: var(--color-maroon-dark);
+          padding: 8px 20px;
+          border-radius: var(--radius-pill);
+          border: 2px solid var(--color-maroon-dark);
+          box-shadow: 3px 3px 0px var(--color-maroon-dark);
+          font-size: 0.9rem;
+          font-weight: 700;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          white-space: nowrap;
         }
 
         /* Weekly Section */
@@ -949,10 +1056,24 @@ export default function LandingPage() {
           gap: 14px;
         }
 
+        .empty-state {
+          text-align: center;
+          padding: 60px 20px;
+        }
+        .empty-state h3 {
+          margin: 16px 0 8px;
+        }
+
+        .text-center { text-align: center; }
+        .mt-4 { margin-top: 24px; }
+
         @media (max-width: 900px) {
+          .hero-container { grid-template-columns: 1fr; }
+          .hero-image-col { order: -1; }
           .hero-title { font-size: 2.2rem; }
           .buyer-container { grid-template-columns: 1fr; }
           .seller-features-grid { grid-template-columns: 1fr; }
+          .hero-cta-group { flex-direction: column; align-items: flex-start; }
         }
       `}</style>
     </div>
