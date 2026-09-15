@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
+import Link from 'next/link';
 import BuyerLayout from '@/components/BuyerLayout';
 import { DataStore } from '@/lib/store';
 import { EventItem, TicketCategory, User, Ticket as TicketType } from '@/lib/types';
