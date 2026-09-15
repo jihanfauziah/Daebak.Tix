@@ -79,11 +79,11 @@ export default function DigitalTicketQrPage() {
 
             <div className="meta-row mt-2 font-body">
               <div>
-                <Calendar size={14} color="var(--color-maroon)" inline />{' '}
+                <Calendar size={14} color="var(--color-maroon)" />{' '}
                 {new Date(currentTicket.event_date).toLocaleDateString('id-ID', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' })}
               </div>
               <div>
-                <MapPin size={14} color="var(--color-maroon)" inline /> {currentTicket.city} ({currentTicket.venue})
+                <MapPin size={14} color="var(--color-maroon)" /> {currentTicket.city} ({currentTicket.venue})
               </div>
             </div>
           </div>

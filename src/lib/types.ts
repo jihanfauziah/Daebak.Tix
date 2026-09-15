@@ -12,6 +12,7 @@ export interface User {
   gender?: 'Laki-laki' | 'Perempuan';
   password?: string;
   role: Role;
+  isOwner?: boolean;
   loyalty_points?: number;
   created_at?: string;
 }
